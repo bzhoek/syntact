@@ -25,7 +25,7 @@ fn main() {
 
   let syntaxes = SyntaxSet::load_defaults_newlines();
   let syntax = syntaxes.find_syntax_by_extension(extension)
-    .expect(&*format!("Unsupported extension type '{}'", extension));
+    .unwrap_or(syntaxes.find_syntax_plain_text());
 
   let themes = ThemeSet::load_defaults();
   let theme = &themes.themes["base16-ocean.dark"];
