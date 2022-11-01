@@ -1,6 +1,7 @@
 [package]
 name = "synhtml"
 version = "0.1.0"
+authors = ["Bas van der Hoek <bas@hoek.com>"]
 edition = "2021"
 
 [dependencies]
