@@ -1,0 +1,4 @@
+module SynTact {
+    header "syntact.h"
+    export *
+}
