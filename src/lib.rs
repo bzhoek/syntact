@@ -1,4 +1,4 @@
-use std::ffi::{c_char, CString};
+use std::ffi::{c_char, CStr, CString};
 
 use syntect::easy::HighlightLines;
 use syntect::highlighting::ThemeSet;
@@ -14,18 +14,21 @@ pub extern "C" fn add(a: i32, b: i32) -> i32 {
 #[no_mangle]
 // https://snacky.blog/en/string-ffi-rust.html
 pub extern fn unicode_from_rust() -> *const c_char {
-  let s = CString::new("Hello 😸").unwrap();
-  let p = s.as_ptr();
-  std::mem::forget(s);
+  let cstring = CString::new("Hello 😸").unwrap();
+  let p = cstring.as_ptr();
+  std::mem::forget(cstring);
   p
 }
 
 #[no_mangle]
 // https://snacky.blog/en/string-ffi-rust.html
-pub extern fn highlighter(source: *const std::os::raw::c_char, extension: *const std::os::raw::c_char) -> *const c_char {
-  let s = CString::new(format!("{:?}.{:?}", source, extension)).unwrap();
-  let p = s.as_ptr();
-  std::mem::forget(s);
+pub unsafe extern "C" fn highlighter(source: *const std::os::raw::c_char, extension: *const std::os::raw::c_char) -> *const c_char {
+  let source = CStr::from_ptr(source);
+  let extension = CStr::from_ptr(extension);
+  let result = highlight(source.to_str().unwrap(), extension.to_str().unwrap());
+  let cstring = CString::new(result).unwrap();
+  let p = cstring.as_ptr();
+  std::mem::forget(cstring);
   p
 }
 
