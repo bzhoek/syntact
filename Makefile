@@ -13,8 +13,8 @@ define lipo_sign
 	codesign -s $(SIGN_IDENTITY) -f $2
 endef
 
-target/libsyntact_macos.a: target/x86_64-apple-darwin/release/libsyntact.a
-	$(call lipo_sign,$<,$@)
+target/libsyntact_macos.a: target/x86_64-apple-darwin/release/libsyntact.a target/aarch64-apple-darwin/release/libsyntact.a
+	$(call lipo_sign,$^,$@)
 
 target/libsyntact_ios.a: target/aarch64-apple-ios/release/libsyntact.a
 	$(call lipo_sign,$<,$@)
@@ -24,6 +24,9 @@ target/aarch64-apple-ios/release/libsyntact.a: include/syntact.h
 
 target/x86_64-apple-darwin/release/libsyntact.a: include/syntact.h
 	cargo build --release --target x86_64-apple-darwin
+
+target/aarch64-apple-darwin/release/libsyntact.a: include/syntact.h
+	cargo build --release --target aarch64-apple-darwin
 
 include/syntact.h: src/lib.rs
 	cbindgen --lang c --output include/syntact.h
