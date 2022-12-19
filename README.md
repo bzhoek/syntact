@@ -24,6 +24,6 @@ xcodebuild -create-xcframework \
   -output SynTact.xcframework
 ```
 
-https://stackoverflow.com/questions/60782402/calling-rust-from-swift
+https://stackoverflow.com/questions/60782402/calling-rust-from-swift werkte niet, maar https://snacky.blog/en/string-ffi-rust.html wel.
 
 https://gregoryszorc.com/docs/apple-codesign/main/ zou code signing makkelijker maken.
