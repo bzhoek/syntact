@@ -8,15 +8,16 @@ SynTact.xcframework: target/libsyntact_macos.a target/libsyntact_ios.a
       -headers ./include/ \
       -output SynTact.xcframework
 
+define lipo_sign
+	lipo -create $1 -output $2
+	codesign -s $(SIGN_IDENTITY) -f $2
+endef
+
 target/libsyntact_macos.a: target/x86_64-apple-darwin/release/libsyntact.a
-	lipo -create target/x86_64-apple-darwin/release/libsyntact.a \
-	  -output target/libsyntact_macos.a
-	codesign -a x86_64 -s $(SIGN_IDENTITY) -f target/libsyntact_macos.a
+	$(call lipo_sign,$<,$@)
 
 target/libsyntact_ios.a: target/aarch64-apple-ios/release/libsyntact.a
-	lipo -create target/aarch64-apple-ios/release/libsyntact.a \
-	  -output target/libsyntact_ios.a
-	codesign -a x86_64 -s $(SIGN_IDENTITY) -f target/libsyntact_ios.a
+	$(call lipo_sign,$<,$@)
 
 target/aarch64-apple-ios/release/libsyntact.a: include/syntact.h
 	cargo build --release --target aarch64-apple-ios
