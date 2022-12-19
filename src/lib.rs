@@ -22,7 +22,7 @@ pub extern fn unicode_from_rust() -> *const c_char {
 
 #[no_mangle]
 // https://snacky.blog/en/string-ffi-rust.html
-pub unsafe extern "C" fn highlighter(source: *const std::os::raw::c_char, extension: *const std::os::raw::c_char) -> *const c_char {
+pub unsafe extern "C" fn highlighter(source: *const c_char, extension: *const c_char) -> *const c_char {
   let source = CStr::from_ptr(source);
   let extension = CStr::from_ptr(extension);
   let result = highlight(source.to_str().unwrap(), extension.to_str().unwrap());
