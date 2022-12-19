@@ -2,11 +2,8 @@ use std::io;
 use std::io::{Read, Write};
 
 use clap::{App, Arg};
-use syntect::easy::HighlightLines;
-use syntect::highlighting::ThemeSet;
-use syntect::html::{append_highlighted_html_for_styled_line, IncludeBackground};
-use syntect::parsing::SyntaxSet;
-use syntect::util::LinesWithEndings;
+
+use syntact::highlight;
 
 fn main() {
   let args = App::new("synpipe")
@@ -23,25 +20,8 @@ fn main() {
   let mut handle = io::stdin().lock();
   handle.read_to_string(&mut string).unwrap();
 
-  let syntaxes = SyntaxSet::load_defaults_newlines();
-  let syntax = syntaxes.find_syntax_by_extension(extension)
-    .unwrap_or(syntaxes.find_syntax_plain_text());
+  let result = highlight(&*string, extension);
 
-  let themes = ThemeSet::load_defaults();
-  let theme = &themes.themes["base16-ocean.dark"];
-
-  let mut highlighter = HighlightLines::new(syntax, theme);
-  let mut output = "<pre>".to_string();
-
-  for line in LinesWithEndings::from(&*string) {
-    let regions = highlighter.highlight_line(line, &syntaxes).unwrap();
-    append_highlighted_html_for_styled_line(
-      &regions[..],
-      IncludeBackground::No,
-      &mut output,
-    ).unwrap();
-  }
-
-  output.push_str("</pre>");
-  io::stdout().write_all(output.as_ref()).unwrap();
+  io::stdout().write_all(result.as_ref()).unwrap();
 }
+

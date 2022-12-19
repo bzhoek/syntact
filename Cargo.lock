@@ -322,7 +322,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "synhtml"
+name = "syntact"
 version = "0.1.0"
 dependencies = [
  "clap",

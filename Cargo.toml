@@ -1,5 +1,5 @@
 [package]
-name = "synhtml"
+name = "syntact"
 version = "0.1.0"
 authors = ["Bas van der Hoek <bas@hoek.com>"]
 edition = "2021"
@@ -9,5 +9,4 @@ syntect = "5.0.0"
 clap = "2.33"
 
 [lib]
-name = "syntact"
-crate-type = ["staticlib"]
+crate-type = ["lib", "staticlib"]
