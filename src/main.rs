@@ -6,7 +6,7 @@ use clap::{App, Arg};
 use syntact::highlight;
 
 fn main() {
-  let args = App::new("synpipe")
+  let args = App::new("syntact")
     .arg(Arg::with_name("EXTENSION")
       .help("Syntax for extension")
       .short("x")
@@ -24,4 +24,3 @@ fn main() {
 
   io::stdout().write_all(result.as_ref()).unwrap();
 }
-
