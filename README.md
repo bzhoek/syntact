@@ -23,7 +23,7 @@ xcodebuild -create-xcframework \
   -headers ./include/ \
   -library ./target/aarch64-apple-ios/release/libsyntact.a \
   -headers ./include/ \
-  -output SynTact.xcframework
+  -output Syntact.xcframework
 ```
 
 ## Sources

@@ -1,12 +1,12 @@
 SIGN_IDENTITY = "Apple Development: Bastiaan Van der Hoek (576HK37AL8)"
 
-SynTact.xcframework: target/libsyntact_macos.a target/libsyntact_ios.a
+Syntact.xcframework: target/libsyntact_macos.a target/libsyntact_ios.a
 	xcodebuild -create-xcframework \
       -library target/libsyntact_macos.a \
       -headers ./include/ \
       -library target/libsyntact_ios.a \
       -headers ./include/ \
-      -output SynTact.xcframework
+      -output Syntact.xcframework
 
 define lipo_sign
 	lipo -create $1 -output $2
