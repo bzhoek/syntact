@@ -16,8 +16,11 @@ endef
 target/libsyntact_macos.a: target/x86_64-apple-darwin/release/libsyntact.a target/aarch64-apple-darwin/release/libsyntact.a
 	$(call lipo_sign,$^,$@)
 
-target/libsyntact_ios.a: target/aarch64-apple-ios/release/libsyntact.a
+target/libsyntact_ios.a: target/x86_64-apple-ios/release/libsyntact.a target/aarch64-apple-ios/release/libsyntact.a
 	$(call lipo_sign,$<,$@)
+
+target/x86_64-apple-ios/release/libsyntact.a: include/syntact.h
+	cargo build --release --target x86_64-apple-ios
 
 target/aarch64-apple-ios/release/libsyntact.a: include/syntact.h
 	cargo build --release --target aarch64-apple-ios
