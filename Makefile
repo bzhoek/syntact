@@ -8,6 +8,7 @@ Syntact.xcframework: target/libsyntact_macos.a target/libsyntact_ios.a
       -headers ./include/ \
       -output Syntact.xcframework
 	zip -r bundle.zip Syntact.xcframework
+	openssl dgst -sha256 bundle.zip
 
 define lipo_sign
 	lipo -create $1 -output $2
