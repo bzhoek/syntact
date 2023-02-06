@@ -17,6 +17,6 @@ let package = Package(
       ),
     .binaryTarget(name: "Syntact",
       url: "https://github.com/bzhoek/syntact/raw/master/bundle.zip",
-      checksum: "cf682ee367c844983319be6c658a90300324bbbaa20a0632d2312c3adab77b0e"),
+      checksum: "f7902525f698504200e1854339f5dd806525dfb8da9089fa115b4a531a5ed8f4"),
   ]
 )

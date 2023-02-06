@@ -11,6 +11,7 @@ rustup default stable
 rustup update
 rustup target add (x86_64|aarch64)-apple-(darwin|ios)
 
+export MACOSX_DEPLOYMENT_TARGET=10.15
 make clean
 make
 
@@ -18,6 +19,7 @@ codesign -d --verbose=2 target/aarch64-apple-ios/release/libsyntact.a # verify s
 ```
 
 ## Sources
+- https://stackoverflow.com/a/64864364/10326604
 - https://www.gnu.org/software/make/manual/html_node/Automatic-Variables.html
 - https://stackoverflow.com/questions/60782402/calling-rust-from-swift, doesn't work
 - https://snacky.blog/en/string-ffi-rust.html does
