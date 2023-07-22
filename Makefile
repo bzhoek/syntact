@@ -11,14 +11,15 @@ Syntact.xcframework: target/libsyntact_macos.a target/libsyntact_ios.a
 	openssl dgst -sha256 bundle.zip
 
 define lipo_sign
-	lipo -create $1 -output $2
+    echo $2
+	lipo -create -output $2 $1
 	codesign -s $(SIGN_IDENTITY) -f $2
 endef
 
 target/libsyntact_macos.a: target/x86_64-apple-darwin/release/libsyntact.a target/aarch64-apple-darwin/release/libsyntact.a
 	$(call lipo_sign,$^,$@)
 
-target/libsyntact_ios.a: target/x86_64-apple-ios/release/libsyntact.a target/aarch64-apple-ios/release/libsyntact.a
+target/libsyntact_ios.a: target/aarch64-apple-ios/release/libsyntact.a target/x86_64-apple-ios/release/libsyntact.a
 	$(call lipo_sign,$<,$@)
 
 target/x86_64-apple-ios/release/libsyntact.a: include/syntact.h
@@ -39,3 +40,4 @@ include/syntact.h: src/lib.rs
 clean:
 	rm -rf Syntact.xcframework
 	rm include/syntact.h
+	rm target/libsyntact_ios.a
