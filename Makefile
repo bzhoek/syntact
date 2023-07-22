@@ -1,10 +1,12 @@
 SIGN_IDENTITY = "Apple Development: Bastiaan Van der Hoek (576HK37AL8)"
 
-Syntact.xcframework: target/libsyntact_macos.a target/libsyntact_ios.a
+Syntact.xcframework: target/libsyntact_macos.a target/aarch64-apple-ios/release/libsyntact.a target/x86_64-apple-ios/release/libsyntact.a
 	xcodebuild -create-xcframework \
       -library target/libsyntact_macos.a \
       -headers ./include/ \
-      -library target/libsyntact_ios.a \
+      -library target/aarch64-apple-ios/release/libsyntact.a \
+      -headers ./include/ \
+      -library target/x86_64-apple-ios/release/libsyntact.a \
       -headers ./include/ \
       -output Syntact.xcframework
 	zip -r bundle.zip Syntact.xcframework
@@ -19,14 +21,11 @@ endef
 target/libsyntact_macos.a: target/x86_64-apple-darwin/release/libsyntact.a target/aarch64-apple-darwin/release/libsyntact.a
 	$(call lipo_sign,$^,$@)
 
-target/libsyntact_ios.a: target/aarch64-apple-ios/release/libsyntact.a target/x86_64-apple-ios/release/libsyntact.a
-	$(call lipo_sign,$<,$@)
+target/aarch64-apple-ios/release/libsyntact.a: include/syntact.h
+	cargo build --release --target aarch64-apple-ios
 
 target/x86_64-apple-ios/release/libsyntact.a: include/syntact.h
 	cargo build --release --target x86_64-apple-ios
-
-target/aarch64-apple-ios/release/libsyntact.a: include/syntact.h
-	cargo build --release --target aarch64-apple-ios
 
 target/x86_64-apple-darwin/release/libsyntact.a: include/syntact.h
 	cargo build --release --target x86_64-apple-darwin

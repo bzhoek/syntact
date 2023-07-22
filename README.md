@@ -4,7 +4,7 @@ Render `stdin` input with [`syntect`](https://github.com/trishume/syntect) as fo
 
 ## Building
 
-Instructions for building a Rust XCFramework from https://betterprogramming.pub/from-rust-to-swift-df9bde59b7cd [automated](Makefile).
+Instructions for building a Rust XCFramework from https://betterprogramming.pub/from-rust-to-swift-df9bde59b7cd [automated](Makefile). https://medium.com/@kennethyoel/a-swiftly-oxidizing-tutorial-44b86e8d84f5 distinguishes simulator and real iOS.
 
 ```sh
 rustup default stable
