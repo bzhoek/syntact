@@ -40,4 +40,4 @@ include/syntact.h: src/lib.rs
 clean:
 	rm -rf Syntact.xcframework
 	rm include/syntact.h
-	rm target/libsyntact_ios.a
+	rm target/*.a
