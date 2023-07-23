@@ -12,11 +12,13 @@ let package = Package(
     .library(name: "SyntaxKit", targets: ["SyntaxKit"]),
   ],
   targets: [
-    .target(name: "SyntaxKit",
+    .target(
+      name: "SyntaxKit",
       dependencies: ["Syntact"]
       ),
-    .binaryTarget(name: "Syntact",
-      url: "https://github.com/bzhoek/syntact/raw/master/bundle.zip",
-      checksum: "48652d318fe7996d22951c726bccd350fd2e42a115b70454da90a22e7272e4e5"),
+    .binaryTarget(
+      name: "Syntact",
+      path: "./Syntact.xcframework"
+    )
   ]
 )
