@@ -7,7 +7,7 @@ Render `stdin` input with [`syntect`](https://github.com/trishume/syntect) as fo
 The instructions for building a Rust XCFramework from https://betterprogramming.pub/from-rust-to-swift-df9bde59b7cd (now paywalled) are [automated](Makefile). https://medium.com/@kennethyoel/a-swiftly-oxidizing-tutorial-44b86e8d84f5 distinguishes simulator and real iOS.
 
 ```sh
-rustup default stable
+rustup default stable # 1.74.1
 rustup update
 rustup target add (x86_64|aarch64)-apple-(darwin|ios)
 rustup target add aarch64-apple-darwin
