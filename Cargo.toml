@@ -7,6 +7,7 @@ edition = "2021"
 [dependencies]
 syntect = "5.0.0"
 clap = "2.33"
+cc = "1.0.83"
 
 [lib]
 crate-type = ["lib", "staticlib"]
