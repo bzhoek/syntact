@@ -13,6 +13,7 @@ rustup target add (x86_64|aarch64)-apple-(darwin|ios)
 rustup target add aarch64-apple-darwin
 rustup target add x86_64-apple-darwin
 rustup target add aarch64-apple-ios
+rustup target add aarch64-apple-ios-sim
 rustup target add x86_64-apple-ios
 
 export MACOSX_DEPLOYMENT_TARGET=10.15
