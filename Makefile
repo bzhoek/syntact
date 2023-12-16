@@ -45,4 +45,4 @@ include/syntact.h: src/lib.rs
 clean:
 	rm -rf Syntact.xcframework
 	rm include/syntact.h
-	rm target/*.a
+	cargo clean
