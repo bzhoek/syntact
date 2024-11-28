@@ -9,12 +9,7 @@ The instructions for building a Rust XCFramework from https://betterprogramming.
 ```sh
 rustup default stable # 1.74.1
 rustup update
-rustup target add (x86_64|aarch64)-apple-(darwin|ios)
-rustup target add aarch64-apple-darwin
-rustup target add x86_64-apple-darwin
-rustup target add aarch64-apple-ios
-rustup target add aarch64-apple-ios-sim
-rustup target add x86_64-apple-ios
+make install # installs all targets
 
 export MACOSX_DEPLOYMENT_TARGET=10.15
 make clean
